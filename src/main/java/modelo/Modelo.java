@@ -34,6 +34,14 @@ public class Modelo {
         this.nombre = nombre;
     }
     
-    
+     public String toString() {
+        return """
+               ======= MODELO =======
+                Id:                                 %s
+                Marca:                           %s
+                Nombre:                        %s
+               ====================
+               """.formatted(id, marca, nombre);
+     }
     
 }

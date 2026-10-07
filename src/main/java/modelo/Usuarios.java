@@ -48,5 +48,14 @@ public class Usuarios {
         this.rol = rol;
     }
     
-    
+    public String toString() {
+        return """
+               ======= USUARIO =======
+                Id:                               %s
+                Correo:                        %s
+                Password:                    %s
+                Rol:                             %s
+               =====================
+               """.formatted(id, correo, password, rol);
+    }
 }

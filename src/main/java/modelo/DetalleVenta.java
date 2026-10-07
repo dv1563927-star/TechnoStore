@@ -54,6 +54,16 @@ public class DetalleVenta {
         this.subtotal = subtotal;
     }
     
-    
+    public String toString() {
+        return """
+               ======= DETALLE DE VENTA =======
+                            Id:                                 %s
+                            Venta:                            %s
+                            Celular:                          %s
+                            Cantidad:                       %s
+                            Subtotal:                        %s
+               ============================
+               """.formatted(id, venta, celular, cantidad, subtotal);
+     }
     
 }

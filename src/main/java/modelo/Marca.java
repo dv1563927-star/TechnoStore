@@ -24,5 +24,12 @@ public class Marca {
         this.nombre = nombre;
     }
     
-    
+     public String toString() {
+        return """
+               ======= MARCA =======
+                Id:                                 %s
+                Nombre:                        %s
+               ====================
+               """.formatted(id, nombre);
+     }
 }

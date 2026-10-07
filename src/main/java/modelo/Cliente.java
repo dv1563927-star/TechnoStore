@@ -3,7 +3,7 @@ package modelo;
 import modelo.GeneradorIds;
 
 public class Cliente {
-    
+
     private int id;
     private Usuarios usuario;
     private String nombre;
@@ -53,7 +53,17 @@ public class Cliente {
     public void setTelefono(String telefono) {
         this.telefono = telefono;
     }
-    
-    
-    
+
+    public String toString() {
+        return """
+               ======= CLIENTE =======
+                  Id:                                %s
+                  Usuario:                        %s
+                  Nombre:                       %s
+                  Identificacion:                %s
+                  Telefono:                      %s
+               =====================
+               """.formatted(id, usuario, nombre, identificacion, telefono );
+    }
+
 }

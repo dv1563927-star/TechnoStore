@@ -45,6 +45,15 @@ public class Venta {
         this.total = total;
     }
     
-    
+    public String toString() {
+        return """
+               ======= VENTA =======
+                Id:                               %s
+                Cliente:                        %s
+                Fecha:                          %s
+                Total:                           %s
+               ====================
+               """.formatted(id, cliente, fecha, total);
+    }
     
 }
