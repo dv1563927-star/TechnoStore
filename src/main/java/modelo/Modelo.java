@@ -1,15 +1,13 @@
 package modelo;
 
-import modelo.GeneradorIds;
-
 public class Modelo {
     
     private int id;
     private Marca marca;
     private String nombre;
 
-    public Modelo(Marca marca, String nombre) {
-        this.id = GeneradorIds.nuevaId();
+    public Modelo(int id, Marca marca, String nombre) {
+        this.id = id;
         this.marca = marca;
         this.nombre = nombre;
     }

@@ -1,7 +1,6 @@
 package modelo;
 
 import java.time.LocalDateTime;
-import modelo.GeneradorIds;
 
 public class Venta {
     
@@ -10,8 +9,8 @@ public class Venta {
     private LocalDateTime fecha;
     private double total;
 
-    public Venta(Cliente cliente, LocalDateTime fecha, double total) {
-        this.id = GeneradorIds.nuevaId();
+    public Venta(int id, Cliente cliente, LocalDateTime fecha, double total) {
+        this.id = id;
         this.cliente = cliente;
         this.fecha = fecha;
         this.total = total;

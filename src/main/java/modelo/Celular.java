@@ -1,7 +1,5 @@
 package modelo;
 
-import modelo.GeneradorIds;
-
 public class Celular {
     
     public enum gama {
@@ -16,7 +14,7 @@ public class Celular {
     private int stock;
 
     public Celular(int id, Modelo modelo, String sistemaOperativo, gama gama, double precio, int stock) {
-        this.id = GeneradorIds.nuevaId();
+        this.id = id;
         this.modelo = modelo;
         this.sistemaOperativo = sistemaOperativo;
         this.gama = gama;

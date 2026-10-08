@@ -1,7 +1,5 @@
 package modelo;
 
-import modelo.GeneradorIds;
-
 public class Cliente {
 
     private int id;
@@ -10,8 +8,8 @@ public class Cliente {
     private String identificacion;
     private String telefono;
 
-    public Cliente(Usuarios usuario, String nombre, String identificacion, String telefono) {
-        this.id = GeneradorIds.nuevaId();
+    public Cliente(int id, Usuarios usuario, String nombre, String identificacion, String telefono) {
+        this.id = id;
         this.usuario = usuario;
         this.nombre = nombre;
         this.identificacion = identificacion;

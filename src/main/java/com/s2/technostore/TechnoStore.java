@@ -1,16 +1,22 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- */
-
 package com.s2.technostore;
 
-/**
- *
- * @author daniel
- */
+import dao.Conexion;
+import java.sql.Connection;
+import java.sql.SQLException;
+
 public class TechnoStore {
 
-    public static void main(String[] args) {
-        System.out.println("Hello World!");
-    }
+    public static void main(String[] args) {                                                                       
+            Conexion conexion = new Conexion();                                                              
+                                                                                                                       
+            try(Connection c = conexion.conexion()) {
+                if (c != null){
+                    System.out.println("Conexion exitosa!");
+                }else {
+                    System.out.println("yaper");
+                }
+            }catch(SQLException e) {
+                e.getMessage();
+            }                                                          
+        }
 }

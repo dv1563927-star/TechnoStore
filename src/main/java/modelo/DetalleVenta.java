@@ -1,7 +1,5 @@
 package modelo;
 
-import modelo.GeneradorIds;
-
 public class DetalleVenta {
     
     private int id;
@@ -10,8 +8,8 @@ public class DetalleVenta {
     private int cantidad;
     private double subtotal;
 
-    public DetalleVenta(Venta venta, Celular celular, int cantidad, double subtotal) {
-        this.id = GeneradorIds.nuevaId();
+    public DetalleVenta(int id, Venta venta, Celular celular, int cantidad, double subtotal) {
+        this.id = id;
         this.venta = venta;
         this.celular = celular;
         this.cantidad = cantidad;
