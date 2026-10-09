@@ -6,14 +6,20 @@ import java.sql.SQLException;
 
 public class Conexion {
 
-    public Connection conexion() {
-        Connection c = null;
-        try {
-            c = DriverManager.getConnection("jdbc:mysql://localhost:3306/technostore", "root", "1097911972");
-//            System.out.println("Conexion exitosa!");
-        } catch (SQLException e) {
-            System.out.println(e.getMessage());
-        }
-        return c;
+    private static final Conexion INSTANCIA = new Conexion();
+    
+    private final String url = "jdbc:mysql:http//localhost:3306/technostore";
+    private final String usuario = "root";
+    private final String password = "1097911972";
+    
+    private Conexion(){
+    }
+    
+    public static Conexion getInstancia() {
+        return INSTANCIA;
+    }
+    
+    public Connection conxeion() throws SQLException {
+        return DriverManager.getConnection(url, usuario, password);
     }
 }

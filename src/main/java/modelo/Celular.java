@@ -7,14 +7,16 @@ public class Celular {
     }
     
     private int id;
-    private Modelo modelo;
+    private Marca marca;
+    private String modelo;
     private String sistemaOperativo;
     private gama gama;
     private double precio;
     private int stock;
 
-    public Celular(int id, Modelo modelo, String sistemaOperativo, gama gama, double precio, int stock) {
+    public Celular(int id, Marca marca, String modelo, String sistemaOperativo, gama gama, double precio, int stock) {
         this.id = id;
+        this.marca = marca;
         this.modelo = modelo;
         this.sistemaOperativo = sistemaOperativo;
         this.gama = gama;
@@ -26,11 +28,19 @@ public class Celular {
         return id;
     }
 
-    public Modelo getModelo() {
+    public Marca getMarca() {
+        return marca;
+    }
+
+    public void setMarca(Marca marca) {
+        this.marca = marca;
+    }
+
+    public String getModelo() {
         return modelo;
     }
 
-    public void setModelo(Modelo modelo) {
+    public void setModelo(String modelo) {
         this.modelo = modelo;
     }
 
@@ -70,14 +80,15 @@ public class Celular {
     public String toString() {
         return """
                =======CELULAR =======
-                Id                                %s
-                Modelo                       %s
-                Sistema Operativo        %s
-                Gamma:                       %s
+                Id:                               %s
+                Marca:                          %s
+                Modelo:                         %s
+                Sistema Operativo:      %s
+                Gama:                           %s
                 Precio:                         %s
                 Stock:                          %s
                ====================
-               """.formatted(id, modelo, sistemaOperativo, gama, precio, stock);
+               """.formatted(id, marca, modelo, sistemaOperativo, gama, precio, stock);
     }
     
 }
