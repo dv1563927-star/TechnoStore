@@ -19,7 +19,7 @@ public class Conexion {
         return INSTANCIA;
     }
     
-    public Connection conxeion() throws SQLException {
+    public Connection conexion() throws SQLException {
         return DriverManager.getConnection(url, usuario, password);
     }
 }
