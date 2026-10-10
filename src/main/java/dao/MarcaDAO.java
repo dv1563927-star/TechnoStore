@@ -12,7 +12,7 @@ import modelo.Marca;
 public class MarcaDAO {
 
     Conexion c = Conexion.getInstancia();
-
+    
     public void crearMarca(Marca marca) {
         try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL registrar_marcas(?, ?)}")) {
 
