@@ -1,7 +1,6 @@
 package controlador;
 
 import dao.CelularDAO;
-import dao.ClienteDAO;
 import dao.VentaDAO;
 import modelo.Cliente;
 import vista.MenuAdmin;
@@ -11,7 +10,6 @@ public class GestionVentas {
 
     VentaDAO ventaDAO = new VentaDAO();
     CelularDAO celularDAO = new CelularDAO();
-    ClienteDAO clienteDAO = new ClienteDAO();
     MenuAdmin menuAdmin = new MenuAdmin();
 
     public void iniciarAdmin() {
@@ -20,8 +18,7 @@ public class GestionVentas {
             menuAdmin.mostrarMenuVentas();
             opcion = menuAdmin.pedirOpcion();
             switch (opcion) {
-                case 1 -> seleccionarClienteYVender();
-                case 2 -> verTodasLasVentas();
+                case 1 -> verTodasLasVentas();
                 case 0 -> System.out.println("Volviendo...");
                 default -> System.out.println("Opción invalida");
             }
@@ -42,22 +39,6 @@ public class GestionVentas {
                 default -> System.out.println("Opción invalida");
             }
         } while (opcion != 0);
-    }
-
-    private void seleccionarClienteYVender() {
-        MenuCliente menuCliente = new MenuCliente();
-
-        //muestro los clientes disponibles para que el admin elija
-        System.out.println("=== CLIENTES DISPONIBLES ===");
-        clienteDAO.listarClientes().forEach(c -> System.out.println(" " + c.getId() + ". " + c.getNombre()));
-
-        int clienteId = menuAdmin.pedirOpcion();
-        Cliente cliente = clienteDAO.buscarCliente(clienteId);
-        if (cliente == null) {
-            System.out.println("El cliente no existe");
-            return;
-        }
-        nuevaVenta(cliente, menuCliente);
     }
 
     private void nuevaVenta(Cliente cliente, MenuCliente menuCliente) {

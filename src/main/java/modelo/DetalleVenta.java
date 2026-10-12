@@ -55,13 +55,12 @@ public class DetalleVenta {
     public String toString() {
         return """
                ======= DETALLE DE VENTA =======
-                            Id:                                 %s
-                            Venta:                            %s
+                            Id:                               %s
                             Celular:                          %s
-                            Cantidad:                       %s
-                            Subtotal:                        %s
+                            Cantidad:                         %s
+                            Subtotal:                        $%s
                ============================
-               """.formatted(id, venta, celular, cantidad, subtotal);
+               """.formatted(id, celular.getMarca().getNombre() + " " + celular.getModelo(), cantidad, subtotal);
      }
     
 }

@@ -80,15 +80,15 @@ public class Celular {
     public String toString() {
         return """
                =======CELULAR =======
-                Id:                               %s
+                Id:                             %s
                 Marca:                          %s
                 Modelo:                         %s
-                Sistema Operativo:      %s
+                Sistema Operativo:              %s
                 Gama:                           %s
                 Precio:                         %s
                 Stock:                          %s
                ====================
-               """.formatted(id, marca, modelo, sistemaOperativo, gama, precio, stock);
+               """.formatted(id, marca.getNombre(), modelo, sistemaOperativo, gama, precio, stock);
     }
     
 }

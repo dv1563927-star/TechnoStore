@@ -8,7 +8,7 @@ public class Conexion {
 
     private static final Conexion INSTANCIA = new Conexion();
     
-    private final String url = "jdbc:mysql:http//localhost:3306/technostore";
+    private final String url = "jdbc:mysql://localhost:3306/technostore";
     private final String usuario = "root";
     private final String password = "1097911972";
     

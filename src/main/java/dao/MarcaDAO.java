@@ -27,7 +27,7 @@ public class MarcaDAO {
 
     public void actualizarMarca(Marca marca) {
 
-        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL actualizar_marca(?, ?)")) {
+        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL actualizar_marca(?, ?)}")) {
             cs.setInt(1, marca.getId());
             cs.setString(2, marca.getNombre());
             cs.executeUpdate();
@@ -51,7 +51,7 @@ public class MarcaDAO {
     public List<Marca> obtenerMarcas() {
         List<Marca> listaMarcas = new ArrayList<>();
 
-        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL listar_marcas()")) {
+        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL listar_marcas()}")) {
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
                 listaMarcas.add(new Marca(rs.getInt("id"), rs.getString("nombre")));
@@ -63,7 +63,7 @@ public class MarcaDAO {
     }
     
     public Marca buscar(int id) {
-        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{listar_marcas()}")) {
+        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL listar_marcas()}")) {
             ResultSet rs = cs.executeQuery();
             while (rs.next()){
                 if(rs.getInt("id") == id) {

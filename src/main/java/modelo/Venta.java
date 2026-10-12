@@ -48,11 +48,11 @@ public class Venta {
         return """
                ======= VENTA =======
                 Id:                               %s
-                Cliente:                        %s
-                Fecha:                          %s
-                Total:                           %s
+                Cliente:                          %s
+                Fecha:                            %s
+                Total:                           $%s
                ====================
-               """.formatted(id, cliente, fecha, total);
+               """.formatted(id, cliente.getNombre(), fecha, total);
     }
     
 }

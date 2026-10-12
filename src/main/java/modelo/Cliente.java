@@ -55,13 +55,13 @@ public class Cliente {
     public String toString() {
         return """
                ======= CLIENTE =======
-                  Id:                                %s
-                  Usuario:                        %s
-                  Nombre:                       %s
-                  Identificacion:                %s
-                  Telefono:                      %s
+                  Id:                               %s
+                  Correo:                           %s
+                  Nombre:                           %s
+                  Identificacion:                   %s
+                  Telefono:                         %s
                =====================
-               """.formatted(id, usuario, nombre, identificacion, telefono );
+               """.formatted(id, usuario.getCorreo(), nombre, identificacion, telefono);
     }
 
 }

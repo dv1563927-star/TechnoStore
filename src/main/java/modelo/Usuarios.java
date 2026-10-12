@@ -50,9 +50,9 @@ public class Usuarios {
         return """
                ======= USUARIO =======
                 Id:                               %s
-                Correo:                        %s
-                Password:                    %s
-                Rol:                             %s
+                Correo:                           %s
+                Password:                         %s
+                Rol:                              %s
                =====================
                """.formatted(id, correo, password, rol);
     }

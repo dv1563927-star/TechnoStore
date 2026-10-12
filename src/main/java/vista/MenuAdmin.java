@@ -23,8 +23,7 @@ public class MenuAdmin {
                 ==============================
                           VENTAS
                 ==============================
-                 1. Nueva venta
-                 2. Ver todas las ventas
+                 1. Ver todas las ventas
                  0. Volver
                 ==============================""");
     }

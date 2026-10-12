@@ -26,7 +26,7 @@ public class Marca {
         return """
                ======= MARCA =======
                 Id:                                 %s
-                Nombre:                        %s
+                Nombre:                             %s
                ====================
                """.formatted(id, nombre);
      }
