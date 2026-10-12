@@ -15,11 +15,16 @@ public class GestionClientes {
             vista.mostrarMenu();
             opcion = vista.pedirOpcion();
             switch (opcion) {
-                case 1 -> actualizarCliente();
-                case 2 -> eliminarCliente();
-                case 3 -> listarClientes();
-                case 0 -> System.out.println("Volviendo...");
-                default -> System.out.println("Opción invalida");
+                case 1 ->
+                    actualizarCliente();
+                case 2 ->
+                    eliminarCliente();
+                case 3 ->
+                    listarClientes();
+                case 0 ->
+                    System.out.println("Volviendo...");
+                default ->
+                    System.out.println("Opción invalida");
             }
         } while (opcion != 0);
     }

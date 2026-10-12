@@ -27,4 +27,16 @@ public class MenuLogin {
         return v.validarTexto("Contraseña: ");
     }
 
+    public String pedirNombre() {
+        return v.validarTexto("Nombre: ");
+    }
+
+    public String pedirIdentificacion() {
+        return v.validarTexto("Identificación: ");
+    }
+
+    public String pedirTelefono() {
+        return v.validarTexto("Teléfono: ");
+    }
+
 }

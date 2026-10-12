@@ -12,10 +12,9 @@ public class IngresoDatosCliente {
                 ==============================
                    GESTIÓN DE CLIENTES
                 ==============================
-                 1. Registrar cliente
-                 2. Actualizar cliente
-                 3. Eliminar cliente
-                 4. Listar clientes
+                 1. Actualizar cliente
+                 2. Eliminar cliente
+                 3. Listar clientes
                  0. Volver
                 ==============================""");
     }
@@ -46,14 +45,6 @@ public class IngresoDatosCliente {
 
     public String pedirTelefono() {
         return v.validarTexto("Teléfono: ");
-    }
-
-    public String pedirCorreo() {
-        return v.validarCorreo("Correo: ");
-    }
-
-    public String pedirPassword() {
-        return v.validarPassword("Contraseña: ");
     }
 
 }
