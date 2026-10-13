@@ -11,17 +11,26 @@ public class UsuarioDAO {
 
     Conexion c = Conexion.getInstancia();
 
-    public void crearUsuario(Usuarios usuario) {
-        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL registrar_usuario(?,?,?,?)}")) {
+    /**
+     * Registra el usuario y devuelve el id generado por la base de datos.
+     * Devuelve -1 si el registro fue rechazado (por ejemplo, correo con
+     * formato invalido), de modo que quien llama pueda detectar el fallo en
+     * lugar de continuar con un usuario inexistente.
+     */
+    public int crearUsuario(Connection con, Usuarios usuario) {
+        try (CallableStatement cs = con.prepareCall("{CALL registrar_usuario(?,?,?,?)}")) {
             cs.setString(1, usuario.getCorreo());
             cs.setString(2, usuario.getPassword());
             cs.setString(3, usuario.getRol().name());
             cs.registerOutParameter(4, Types.INTEGER);
 
             cs.executeUpdate();
-            System.out.println("Usuario registrado correctamente! (id: " + cs.getInt(4) + ")");
+            int id = cs.getInt(4);
+            System.out.println("Usuario registrado correctamente! (id: " + id + ")");
+            return id;
         } catch (SQLException e) {
-            System.out.println(e.getMessage());
+            System.out.println("No se pudo registrar el usuario: " + e.getMessage());
+            return -1;
         }
     }
 

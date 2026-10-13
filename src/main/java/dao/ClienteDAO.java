@@ -14,9 +14,16 @@ public class ClienteDAO {
 
     Conexion c = Conexion.getInstancia();
 
-    public void crearCliente(Cliente cliente) {
+    public int crearCliente(Connection con, Cliente cliente) {
+        //un cliente sin usuario asociado no se puede registrar: el procedimiento
+        //necesita el usuario_fk, y sin esta comprobacion se producia un
+        //NullPointerException al intentar leer el id del usuario
+        if (cliente == null || cliente.getUsuario() == null) {
+            System.out.println("No se pudo registrar el cliente: falta el usuario asociado");
+            return -1;
+        }
 
-        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL registrar_cliente(?,?,?,?,?)}")) {
+        try (CallableStatement cs = con.prepareCall("{CALL registrar_cliente(?,?,?,?,?)}")) {
             cs.setInt(1, cliente.getUsuario().getId());
             cs.setString(2, cliente.getNombre());
             cs.setString(3, cliente.getIdentificacion());
@@ -24,9 +31,12 @@ public class ClienteDAO {
             cs.registerOutParameter(5, Types.INTEGER);
 
             cs.executeUpdate();
-            System.out.println("Cliente registrado correctamente! (id: " + cs.getInt(5) + ")");
+            int id = cs.getInt(5);
+            System.out.println("Cliente registrado correctamente! (id: " + id + ")");
+            return id;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return -1;
         }
 
     }

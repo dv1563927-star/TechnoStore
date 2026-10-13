@@ -5,7 +5,6 @@ import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import modelo.Celular;
@@ -34,7 +33,7 @@ public class VentaDAO {
         }
     }
 
-    public void agregarItem(int ventaId, int celularId, int cantidad) {
+    public boolean agregarItem(int ventaId, int celularId, int cantidad) {
         try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL agregar_item_venta(?,?,?)}")) {
             cs.setInt(1, ventaId);
             cs.setInt(2, celularId);
@@ -42,27 +41,41 @@ public class VentaDAO {
 
             cs.executeUpdate();
             System.out.println("Item agregado correctamente!");
+            return true;
         } catch (SQLException e) {
             System.out.println(e.getMessage());
+            return false;
         }
     }
 
+    /**
+     * Todas las ventas de la tienda. Es el listado del administrador.
+     */
     public List<Venta> listarVentas() {
         List<Venta> lista = new ArrayList<>();
 
         try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL listar_ventas()}")) {
             ResultSet rs = cs.executeQuery();
             while (rs.next()) {
-                //listar_ventas devuelve el nombre del cliente pero no todos sus datos, construyo uno parcial pa mostrar
-                Usuarios usuario = new Usuarios(0, "", "", Usuarios.Rol.CLIENTE);
-                Cliente cliente = new Cliente(0, usuario, rs.getString("cliente"), "", "");
-                Venta venta = new Venta(
-                        rs.getInt("id"),
-                        cliente,
-                        rs.getTimestamp("fecha").toLocalDateTime(),
-                        rs.getDouble("total")
-                );
-                lista.add(venta);
+                lista.add(mapearVenta(rs));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        return lista;
+    }
+
+    /**
+     * Solo las ventas del cliente indicado. Es el listado de "Ver mis compras".
+     */
+    public List<Venta> listarVentasPorCliente(int clienteId) {
+        List<Venta> lista = new ArrayList<>();
+
+        try (Connection con = c.conexion(); CallableStatement cs = con.prepareCall("{CALL listar_ventas_por_cliente(?)}")) {
+            cs.setInt(1, clienteId);
+            ResultSet rs = cs.executeQuery();
+            while (rs.next()) {
+                lista.add(mapearVenta(rs));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
@@ -94,6 +107,21 @@ public class VentaDAO {
             System.out.println(e.getMessage());
         }
         return lista;
+    }
+
+    /**
+     * Los procedimientos de listado devuelven el nombre del cliente pero no
+     * todos sus datos, asi que construyo un cliente parcial solo para mostrar.
+     */
+    private Venta mapearVenta(ResultSet rs) throws SQLException {
+        Usuarios usuario = new Usuarios(0, "", "", Usuarios.Rol.CLIENTE);
+        Cliente cliente = new Cliente(0, usuario, rs.getString("cliente"), "", "");
+        return new Venta(
+                rs.getInt("id"),
+                cliente,
+                rs.getTimestamp("fecha").toLocalDateTime(),
+                rs.getDouble("total")
+        );
     }
 
 }

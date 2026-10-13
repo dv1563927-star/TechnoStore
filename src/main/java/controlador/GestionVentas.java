@@ -34,7 +34,8 @@ public class GestionVentas {
             switch (opcion) {
                 case 1 -> menuCliente.mostrarCatalogo(celularDAO.listarCelulares());
                 case 2 -> nuevaVenta(cliente, menuCliente);
-                case 3 -> menuCliente.mostrarMisCompras(ventaDAO.listarVentas());
+                //solo las ventas de este cliente, no las de toda la tienda
+                case 3 -> menuCliente.mostrarMisCompras(ventaDAO.listarVentasPorCliente(cliente.getId()));
                 case 0 -> System.out.println("Sesión cerrada");
                 default -> System.out.println("Opción invalida");
             }
@@ -50,16 +51,24 @@ public class GestionVentas {
             return;
         }
 
-        String continuar;
+        boolean continuar;
+        boolean fallo = false;
         do {
             int celularId = menuCliente.pedirCelularId();
             int cantidad = menuCliente.pedirCantidad();
-            ventaDAO.agregarItem(ventaId, celularId, cantidad);
-            System.out.println("Desea agregar otro celular? (s para continuar, cualquier tecla para terminar): ");
-            continuar = new vista.Validaciones().validarTexto("");
-        } while (continuar.equalsIgnoreCase("s"));
+            if (!ventaDAO.agregarItem(ventaId, celularId, cantidad)) {
+                fallo = true;
+            }
+            //Enter termina la compra; antes la linea vacia se rechazaba y el
+            //usuario quedaba atrapado en el bucle
+            continuar = menuCliente.preguntarAgregarOtro();
+        } while (continuar);
 
-        System.out.println("Venta registrada correctamente!");
+        if (fallo) {
+            System.out.println("Algunos celulares no se pudieron agregar a la venta");
+        } else {
+            System.out.println("Venta registrada correctamente!");
+        }
         menuCliente.mostrarDetalleCompra(ventaDAO.listarDetalleVenta(ventaId));
     }
 

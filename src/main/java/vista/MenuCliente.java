@@ -57,4 +57,11 @@ public class MenuCliente {
         return v.validarEnteroPositivo("Cantidad: ");
     }
 
+    /**
+     * Pregunta si se desea agregar otro articulo. Pulsar Enter termina la compra.
+     */
+    public boolean preguntarAgregarOtro() {
+        return v.validarOpcionSN("¿Desea agregar otro celular? (s = sí, Enter = terminar): ");
+    }
+
 }

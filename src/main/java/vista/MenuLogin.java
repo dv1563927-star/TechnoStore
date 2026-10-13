@@ -19,12 +19,24 @@ public class MenuLogin {
         return v.validarEntero("Seleccione una opción: ");
     }
 
-    public String pedirCorreo() {
+    // --- Login: solo se comprueba la credencial, no se aplican reglas de formato ---
+
+    public String pedirCorreoLogin() {
         return v.validarTexto("Correo: ");
     }
 
-    public String pedirPassword() {
+    public String pedirPasswordLogin() {
         return v.validarTexto("Contraseña: ");
+    }
+
+    // --- Registro: aqui si se validan el formato del correo y la longitud ---
+
+    public String pedirCorreoRegistro() {
+        return v.validarCorreo("Correo: ");
+    }
+
+    public String pedirPasswordRegistro() {
+        return v.validarPassword("Contraseña (mínimo 6 caracteres): ");
     }
 
     public String pedirNombre() {

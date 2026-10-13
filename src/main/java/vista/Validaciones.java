@@ -95,4 +95,17 @@ public class Validaciones {
         return password;
     }
 
+    /**
+     * Lee una respuesta de si/no. A diferencia de validarTexto, la linea vacia
+     * es una respuesta valida y significa "no", de modo que el usuario puede
+     * terminar pulsando Enter.
+     */
+    public boolean validarOpcionSN(String mensaje) {
+        System.out.println(mensaje);
+        String respuesta = x.nextLine().trim();
+        return respuesta.equalsIgnoreCase("s")
+                || respuesta.equalsIgnoreCase("si")
+                || respuesta.equalsIgnoreCase("sí");
+    }
+
 }
