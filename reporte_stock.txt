@@ -1,0 +1,8 @@
+========== REPORTE STOCK BAJO ==========
+Generado: 21/10/2026 11:36
+
+ID #1
+Nombre celular:  Samsung
+Modelo: a25Stock:  4
+==================================================
+

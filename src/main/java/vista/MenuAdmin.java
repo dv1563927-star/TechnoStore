@@ -36,7 +36,8 @@ public class MenuAdmin {
                  1. Celulares con stock bajo
                  2. Top 3 más vendidos
                  3. Ventas por mes
-                 4. Generar reporte .txt
+                 4. Generar reporte de ventas .txt
+                 5. Generar reporte de stock .txt
                  0. Volver
                 ==============================""");
     }
