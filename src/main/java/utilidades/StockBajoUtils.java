@@ -47,6 +47,7 @@ public class StockBajoUtils {
                 escritor.write("Nombre celular:  " + nombre );
                 escritor.newLine();
                 escritor.write("Modelo: " + modelo);
+                escritor.newLine();
                 escritor.write("Stock:  " + Stock );
                 escritor.newLine();
 
